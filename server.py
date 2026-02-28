@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
 load_dotenv()
 from fastapi import FastAPI, Query, UploadFile
-from .infrastructure.queue import queue
-from .workers.query_worker import process_query
-from .workers.indexing_worker import index_file
+from infrastructure.queue import queue
+from workers.query_worker import process_query
+from workers.indexing_worker import index_file
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import uuid
@@ -41,7 +41,7 @@ def chat_request(
     query: str = Query(..., description="The chat query from user"),
     collection: str = Query(..., description="This is the collection name"),
 ):
-    job = queue.enqueue(process_query, query, collection)
+    job =  queue.enqueue(process_query, query, collection)
     return {"job_id": job.id, "status": "Queued"}
 
 

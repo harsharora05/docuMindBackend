@@ -66,15 +66,14 @@ OPENAI_API_KEY=your_openai_key
 
 ## ▶️ Running the Backend
 
-⚠️ Make sure you are in the parent directory of DocuMindBackend.
-
 ```bash
-python -m DocuMindBackend.main
+python -m main.py
 ```
 👷 Running the Worker
 
 In a separate terminal:
 ```bash
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES 
 rq worker --with-scheduler
 ```
 📡 API Endpoints
